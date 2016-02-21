@@ -930,7 +930,6 @@ public class AJProjectModelFacade {
         return getRelationshipsForFile(icu, null);
     }
     
-    
     /**
      * walks the file and grabs all relationships for it.  filter by relationship type
      * pass in null filter for all relationships
@@ -946,6 +945,29 @@ public class AJProjectModelFacade {
             interesting = null;
         }
         
+        String key = icu.getPath().toString();
+        Map<Integer, List<IRelationship>> retVal = new HashMap<Integer, List<IRelationship>>();
+        boolean found = false;
+        for (Iterator<String> it = relationshipMap.getEntries().iterator(); it.hasNext();) {
+            String entry = it.next();
+            if (entry.startsWith(key)) {
+                found = true;
+                List<IRelationship> rels = relationshipMap.get(entry);
+                for (IRelationship rel : rels) {
+                    Integer line = rel.getSourceLine();
+                    List<IRelationship> list = retVal.get(line);
+                    if (list == null) {
+                        list = new ArrayList<IRelationship>();
+                        retVal.put(line, list);
+                    }
+                    list.add(rel);
+                }
+            }
+        }
+        if (found) {
+        	return retVal;
+        }
+
         // walk the hierarchy and get relationships for each node
         final Map<Integer, List<IRelationship>> allRelationshipsMap = new HashMap<Integer, List<IRelationship>>();
         IProgramElement ipe = javaElementToProgramElement(icu);

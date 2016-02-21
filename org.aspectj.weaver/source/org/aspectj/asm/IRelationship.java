@@ -23,6 +23,8 @@ import java.util.List;
  */
 public interface IRelationship extends Serializable {
 
+	public Integer getSourceLine();
+	public void setSourceLine(int line);
 	public String getName();
 
 	public Kind getKind();

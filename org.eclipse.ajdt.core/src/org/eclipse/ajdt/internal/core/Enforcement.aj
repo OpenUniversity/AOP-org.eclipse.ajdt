@@ -23,9 +23,9 @@ import org.eclipse.ajdt.core.model.AJModelChecker;
  */
 public aspect Enforcement {
 
-	declare warning : (get(* System.out) || get(* System.err))
-		&& !withincode(void AJLog.log(..))
-		: "There should be no printlns"; //$NON-NLS-1$
+//	declare warning : (get(* System.out) || get(* System.err))
+//		&& !withincode(void AJLog.log(..))
+//		: "There should be no printlns"; //$NON-NLS-1$
 	
 	declare warning : call(* Exception.printStackTrace(..)) : 
 	    "There should be no calls to printStackTrace"; //$NON-NLS-1$
