@@ -68,7 +68,7 @@ public class CoreUtils {
 
 	public static final FilenameFilter ASPECTJ_SOURCE_ONLY_FILTER = new FilenameFilter() {
 		public boolean accept(String name) {
-			return (name.endsWith(".aj")) || name.endsWith(".locks") || name.endsWith(".audit") || name.endsWith(".permissions"); //$NON-NLS-1$
+			return (name.endsWith(".aj")) || name.endsWith(".locks") || name.endsWith(".audit") || name.endsWith(".permissions") || name.endsWith(".cool"); //$NON-NLS-1$
 		}
 	};
 	
